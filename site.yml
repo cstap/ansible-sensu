@@ -1,0 +1,5 @@
+- hosts: sensu_masters
+  remote_user: ec2-user
+  become: yes
+  roles:
+    - { role: cmacrae.sensu, sensu_master: true, sensu_include_dashboard: true }

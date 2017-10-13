@@ -1,0 +1,5 @@
+[rabbitmq_servers]
+
+[redis_servers]
+
+[sensu_masters]
