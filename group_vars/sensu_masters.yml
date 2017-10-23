@@ -1,0 +1,7 @@
+sensu_api_host: "127.0.0.1"
+sensu_remote_plugins:
+  - graphite
+  - process-checks
+  - disk-checks
+  - memory-checks
+  - mailer

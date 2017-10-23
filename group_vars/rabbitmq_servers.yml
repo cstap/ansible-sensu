@@ -1,0 +1,2 @@
+rabbitmq_server: true
+rabbitmq_host: "127.0.0.1"
