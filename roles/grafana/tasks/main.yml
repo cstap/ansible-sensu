@@ -1,0 +1,61 @@
+---
+#
+# install grafana
+#
+- name: install yum repository
+  copy: src={{ item }} dest=/etc/yum.repos.d/{{ item }} owner=root group=root mode=0644
+  with_items:
+    - grafana.repo
+  tags: grafana
+
+- name: install grafana
+  yum: name=grafana
+  tags: grafana
+
+#
+# configure https
+#
+- include: self_signed_cert.yml
+  tags: grafana
+
+- name: rewrite grafana.ini
+  ini_file:
+    state: present
+    dest: "{{ grafana_conf }}"
+    section: server
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "protocol", value: "https" }
+    - { key: "cert_file", value: "{{ cert_path }}" }
+    - { key: "cert_key", value: "{{ key_path }}" }
+    - { key: "http_port", value: "{{ grafana_port }}" }
+  notify: restart grafana-server
+  tags: grafana
+
+#
+# set permissions for opening 80/443 port to the binary
+#
+- name: get net bind permissions
+  shell: getcap {{ grafana_bin }}
+  register: grafana_getcap
+  failed_when: False
+  changed_when: False
+  tags: grafana
+
+- name: set net bind permissions
+  shell: setcap 'cap_net_bind_service=+ep' {{ grafana_bin }}
+  when: grafana_getcap.stdout.find('cap_net_bind_service+ep') == -1
+  tags: grafana
+
+#
+# start service
+#
+- name: start grafana-server
+  service: name={{ grafana_service }} state=started
+  failed_when: False
+  tags: grafana
+
+- name: assume grafana-server is started
+  service: name={{ grafana_service }} state=started
+  tags: grafana

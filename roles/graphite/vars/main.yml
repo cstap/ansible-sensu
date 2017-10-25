@@ -1,0 +1,29 @@
+---
+#
+# Users
+#
+graphite_user: graphite
+
+#
+# Directories
+#
+graphite_root: /opt/graphite
+conf_dir: "{{ graphite_root }}/conf"
+app_dir: "{{ graphite_root }}/webapp/graphite"
+
+#
+# Carbon Settings
+#
+carbon_user: "{{ graphite_user }}"
+carbon_service: carbon-cache
+whisper_default_time_per_point: 5m
+whisper_default_time_to_store: 730d
+
+#
+# uWSGI Settings
+#
+uwsgi_user: "{{ graphite_user }}"
+uwsgi_service: graphite-web
+uwsgi_port: 9001
+uwsgi_path: /usr/local/bin/uwsgi
+uwsgi_file: "{{ conf_dir }}/graphite.wsgi"

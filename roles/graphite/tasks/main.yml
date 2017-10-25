@@ -1,0 +1,96 @@
+---
+#
+# install packages
+#
+- name: install dependencies
+  yum: name={{ item }} state=present enablerepo=epel
+  with_items:
+    - gcc
+    - python-devel
+    - python27-pycairo
+  tags: graphite
+
+- name: install python libraries
+  pip: name={{ item }} state=present
+  with_items:
+    - https://github.com/graphite-project/ceres/tarball/master
+    - "whisper==0.9.13"
+    - "carbon==0.9.13"
+    - "graphite-web==0.9.13"
+    - "Django==1.8.2"
+    - "django-tagging==0.4"
+    - "uwsgi==2.0.10"
+  tags: graphite
+
+#
+# setup graphite user
+#
+- name: create graphite user
+  user: name={{ item }}
+  with_items:
+    - "{{ graphite_user }}"
+  tags: graphite
+
+#
+# prepare config files
+#
+- name: copy configurations from example
+  shell: cp -fp {{ item }}.example {{ item }} creates={{ item }}
+  with_items:
+    - "{{ conf_dir }}/carbon.conf"
+    - "{{ conf_dir }}/storage-aggregation.conf"
+    - "{{ conf_dir }}/graphite.wsgi"
+    - "{{ app_dir }}/local_settings.py"
+  notify: restart graphite-web
+  tags: graphite
+
+- name: setup carbon settings
+  lineinfile: dest={{ conf_dir }}/carbon.conf regexp="^USER =" line="USER = {{ carbon_user }}"
+  notify: restart carbon-cache
+  tags: graphite
+
+- name: setup whisper settings
+  template: src={{ item }}.j2 dest={{ conf_dir }}/{{ item }}
+    owner={{ carbon_user }} group={{ carbon_user }} mode=0644 backup=yes
+  with_items:
+    - storage-schemas.conf
+  notify: restart carbon-cache
+  tags: graphite
+
+#
+# initial setup for graphite db
+#
+- name: find state of graphite db
+  command: "python {{ app_dir }}/manage.py inspectdb"
+  register: inspect_db
+  changed_when: False
+  failed_when: False
+  tags: graphite
+
+- name: prepare graphite db
+  command: "python {{ app_dir }}/manage.py syncdb --noinput"
+  when: inspect_db.stdout.find('account_mygraph') == -1
+  tags: graphite
+
+- name: change directory ownership
+  file: path={{ item }} state=directory recurse=yes owner={{ uwsgi_user }} group={{ uwsgi_user }}
+  with_items:
+    - "{{ graphite_root }}"
+  tags: graphite
+
+#
+# start services
+#
+- name: copy init script for carbon-cache and graphite-web
+  template: src={{ item }}.j2 dest=/etc/init.d/{{ item }} owner=root group=root mode=0755
+  with_items:
+    - "{{ carbon_service }}"
+    - "{{ uwsgi_service }}"
+  tags: graphite
+
+- name: enable carbon and uwsgi
+  service: name={{ item }} enabled=yes state=started
+  with_items:
+    - "{{ carbon_service }}"
+    - "{{ uwsgi_service }}"
+  tags: graphite

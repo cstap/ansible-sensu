@@ -13,6 +13,25 @@ ansible-playbook -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 open uchiwa port 3000
 open api port 4567
 
+# Play Grafana
+
+- Access to Grafana
+    - Launch a web browser
+    - Access to url: ```https://xxx.xxx.xxx.xxx/``` (Your public IP address)
+    - Accept untrusted certification
+    - Log in with username=`admin`, password=`admin`
+- Click the top-left menu icon
+- Data Sources -> Add new
+    - Name: `Graphite`
+    - Default: On
+    - Type: Graphite
+    - Url: `http://localhost:9001`
+    - Access: proxy
+    - Basic Auth: Enable: Off
+- Dashboards -> Home -> New
+- Row menu (gree button) -> Add Panel -> Graph -> Click on the title -> edit
+- Select the metrics (e.g. `carbon.agents.ip-xxx-xxx-xxx-xxx-a.memUsage`)
+
 # Bug Fix
 
 Ansible-sensu uses `cmacrae.sensu` from ansible-galaxy.
