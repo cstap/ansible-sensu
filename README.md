@@ -8,6 +8,8 @@ Install `cmacrae.sensu` from ansible-galaxy if needed.
 $ ansible-galaxy install cmacrae.sensu
 ```
 
+# Edit config
+
 Edit `hosts`
 
 Example
@@ -21,6 +23,10 @@ redis.cmacrae.sensu.com
 [sensu_masters]
 cmacrae.sensu.com
 ```
+
+## Modify sensu config
+
+@see `data/static/sensu/definitions`
 
 # Install sensu, graphite and grafana
 
