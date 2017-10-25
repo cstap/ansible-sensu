@@ -2,18 +2,46 @@
 
 # Setup
 
+Install `cmacrae.sensu` from ansible-galaxy if needed.
+
+```
+$ ansible-galaxy install cmacrae.sensu
+```
+
 Edit `hosts`
 
-# Install
+Example
+```
+[rabbitmq_servers]
+mq.cmacrae.sensu.com
+
+[redis_servers]
+redis.cmacrae.sensu.com
+
+[sensu_masters]
+cmacrae.sensu.com
+```
+
+# Install sensu, graphite and grafana
 
 ```
 ansible-playbook -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 ```
 
-open uchiwa port 3000
-open api port 4567
+- open uchiwa port 3000
+- open api port 4567
 
-# Play Grafana
+# Browse
+
+Uchiwa Dashboard
+
+`http://[ip address]:3000/`
+
+Grafana Dashboard
+
+`https://[ip address]/`
+
+## Play Grafana
 
 - Access to Grafana
     - Launch a web browser
