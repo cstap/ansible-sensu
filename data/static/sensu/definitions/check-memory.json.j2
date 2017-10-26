@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-memory": {
+            "command": "check-memory-percent.rb -w 70 -c 80",
+            "interval": 10,
+            "refresh": 10,
+            "subscribers": ["sensu_masters"],
+            "handlers": ["mailer"],
+            "contact": "infra"
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-disk-usage": {
+            "command": "check-disk-usage.rb -w 80 -c 90",
+            "interval": 10,
+            "refresh": 10,
+            "subscribers": ["sensu_masters"],
+            "handlers": ["mailer"],
+            "contact": "infra"
+        }
+    }
+}

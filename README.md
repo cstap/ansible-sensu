@@ -66,6 +66,10 @@ Grafana Dashboard
 - Row menu (gree button) -> Add Panel -> Graph -> Click on the title -> edit
 - Select the metrics (e.g. `carbon.agents.ip-xxx-xxx-xxx-xxx-a.memUsage`)
 
+# Plugins
+
+@see `group_vars/sensu_masters.yml`
+
 # Bug Fix
 
 Ansible-sensu uses `cmacrae.sensu` from ansible-galaxy.
