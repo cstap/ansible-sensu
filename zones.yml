@@ -1,0 +1,5 @@
+- hosts: zones
+  remote_user: login-user
+  become: yes
+  roles:
+    - cmacrae.sensu

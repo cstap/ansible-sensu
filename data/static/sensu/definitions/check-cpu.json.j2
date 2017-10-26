@@ -4,7 +4,7 @@
             "command": "check-cpu.rb -w 80 -c 90",
             "interval": 10,
             "refresh": 10,
-            "subscribers": ["sensu_masters"],
+            "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer"],
             "contact": "infra"
         }

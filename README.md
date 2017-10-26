@@ -22,20 +22,30 @@ redis.cmacrae.sensu.com
 
 [sensu_masters]
 cmacrae.sensu.com
+
+[zones]
+client.domain.com
 ```
+
+@see `site.yml` , `zones.yml` and check `ssh login-user`
 
 ## Modify sensu config
 
 @see `data/static/sensu/definitions`
 
-# Install sensu, graphite and grafana
-
+# Install sensu_server, graphite and grafana
 ```
-ansible-playbook -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
+ansible-playbook -v -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 ```
 
 - open uchiwa port 3000
 - open api port 4567
+- open mq port 5671
+
+# Install sensu_client
+```
+ansible-playbook -v -i hosts zones.yml --private-key="~/.ssh/priv-key.pem"
+```
 
 # Browse
 

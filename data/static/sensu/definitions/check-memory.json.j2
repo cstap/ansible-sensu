@@ -4,7 +4,7 @@
             "command": "check-memory-percent.rb -w 70 -c 80",
             "interval": 10,
             "refresh": 10,
-            "subscribers": ["sensu_masters"],
+            "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer"],
             "contact": "infra"
         }
