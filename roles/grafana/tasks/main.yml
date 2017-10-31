@@ -18,7 +18,7 @@
 - include: self_signed_cert.yml
   tags: grafana
 
-- name: rewrite grafana.ini
+- name: rewrite grafana.ini at section
   ini_file:
     state: present
     dest: "{{ grafana_conf }}"
@@ -30,6 +30,21 @@
     - { key: "cert_file", value: "{{ cert_path }}" }
     - { key: "cert_key", value: "{{ key_path }}" }
     - { key: "http_port", value: "{{ grafana_port }}" }
+  notify: restart grafana-server
+  tags: grafana
+
+- name: rewrite grafana.ini at smtp
+  ini_file:
+    state: present
+    dest: "{{ grafana_conf }}"
+    section: smtp
+    option: "{{ item.key }}"
+    value: "{{ item.value }}"
+  with_items:
+    - { key: "enabled", value: "true" }
+    - { key: "host", value: "localhost:25" }
+    - { key: "from_address", value: "admin@grafana.localhost" }
+    - { key: "from_name", value: "grafana" }
   notify: restart grafana-server
   tags: grafana
 

@@ -2,10 +2,10 @@
     "checks": {
         "check-disk-usage": {
             "command": "check-disk-usage.rb -w 80 -c 90",
-            "interval": 10,
+            "interval": 60,
             "refresh": 10,
             "subscribers": ["sensu_masters", "zones"],
-            "handlers": ["mailer", "graphite"],
+            "handlers": ["mailer"],
             "contact": "infra"
         }
     }
