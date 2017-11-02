@@ -1,0 +1,15 @@
+{
+    "contacts": {
+        "infra": {
+{% for email_to in contacts_infra_email_to %}
+            "email": {
+                "to": "{{ email_to }}"
+            },
+{% endfor %}
+{# 末尾カンマが邪魔なため空のメールキーを用意 #}
+            "email": {
+                "to": ""
+            }
+        }
+    }
+}

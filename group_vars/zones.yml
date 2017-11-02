@@ -1,0 +1,5 @@
+sensu_remote_plugins:
+  - process-checks
+  - cpu-checks
+  - disk-checks
+  - memory-checks

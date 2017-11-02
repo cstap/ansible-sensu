@@ -29,9 +29,18 @@ client.domain.com
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
 
-## Modify sensu config
+## Setup some parameters
 
-@see `data/static/sensu/definitions`
+@see `group_vars/sensu_masters.yml`
+
+You may need to set these parameters.
+
+- `sensu_api_host`
+- `slack_webhook_url`
+- `slack_channel`
+- `handler_mail_from`
+- `handler_mail_to`
+- `contacts_infra_email_to`
 
 # Install sensu_server, graphite and grafana
 ```

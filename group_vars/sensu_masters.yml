@@ -6,3 +6,4 @@ sensu_remote_plugins:
   - disk-checks
   - memory-checks
   - mailer
+  - slack

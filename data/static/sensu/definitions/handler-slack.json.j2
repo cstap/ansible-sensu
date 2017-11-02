@@ -1,0 +1,16 @@
+{
+    "handlers": {
+        "slack": {
+            "type": "pipe",
+            "command": "/opt/sensu/embedded/bin/handler-slack.rb"
+        }
+    },
+    "slack": {
+        "webhook_url": "{{ slack_webhook_url }}",
+        "channel": "{{ slack_channel }}",
+        "message_prefix": "",
+        "markdown_enabled": false,
+        "icon_url": "https://raw.githubusercontent.com/sensu/sensu-logo/master/sensu1_flat%20white%20bg_png.png",
+        "timeout": 10
+    }
+}
