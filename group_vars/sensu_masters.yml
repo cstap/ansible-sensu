@@ -1,4 +1,12 @@
+---
 sensu_api_host: "127.0.0.1"
+slack_webhook_url: ""
+slack_channel: ""
+handler_mail_from: ""
+handler_mail_to: ""
+contacts_infra_email_to:
+  - ""
+  - ""
 sensu_remote_plugins:
   - graphite
   - process-checks
