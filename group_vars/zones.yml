@@ -3,3 +3,5 @@ sensu_remote_plugins:
   - cpu-checks
   - disk-checks
   - memory-checks
+  - network-checks
+  - load-checks

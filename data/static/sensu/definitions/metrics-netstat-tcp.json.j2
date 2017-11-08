@@ -1,0 +1,11 @@
+{
+    "checks": {
+        "metrics-netstat-tcp": {
+            "type": "metric",
+            "command": "metrics-netstat-tcp.rb -d",
+            "interval": 60,
+            "subscribers": ["sensu_masters", "zones"],
+            "handlers": ["graphite"]
+        }
+    }
+}

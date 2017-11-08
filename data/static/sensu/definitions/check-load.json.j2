@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-load": {
+            "command": "check-load.rb -w 4,8,16 -c 8,16,32",
+            "interval": 60,
+            "refresh": 10,
+            "subscribers": ["sensu_masters", "zones"],
+            "handlers": ["mailer", "slack"],
+            "contact": "infra"
+        }
+    }
+}

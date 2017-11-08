@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-swap-percent": {
+            "command": "check-swap-percent.rb -w 40 -c 50",
+            "interval": 60,
+            "refresh": 10,
+            "subscribers": ["sensu_masters", "zones"],
+            "handlers": ["mailer", "slack"],
+            "contact": "infra"
+        }
+    }
+}

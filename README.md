@@ -88,6 +88,9 @@ Grafana Dashboard
 # Plugins
 
 @see `group_vars/sensu_masters.yml`
+@see `group_vars/zones.yml`
+@see `data/static/sensu/definitions/*`
+
 
 # Bug Fix
 
