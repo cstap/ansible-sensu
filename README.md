@@ -10,7 +10,7 @@ $ ansible-galaxy install cmacrae.sensu
 
 # Edit config
 
-Edit `hosts`
+Make `hosts` file and Edit it.
 
 Example
 ```
@@ -29,18 +29,21 @@ client.domain.com
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
 
-## Setup some parameters
+## Set some parameters
 
 @see `group_vars/sensu_masters.yml`
 
-You may need to set these parameters.
+You may need to set these environment variables.
 
-- `sensu_api_host`
-- `slack_webhook_url`
-- `slack_channel`
-- `handler_mail_from`
-- `handler_mail_to`
-- `contacts_infra_email_to`
+- `export SENSU_API_HOST=""`
+- `export SENSU_SLACK_WEBHOOK_URL=""`
+- `export SENSU_SLACK_CHANNEL="#"`
+- `export SENSU_HANDLER_MAIL_FROM=""`
+- `export SENSU_HANDLER_MAIL_TO=""`
+- `export SENSU_INFRA_EMAIL_TO=""`
+- `export SENSU_INFRA_EMAIL_TO2=""`
+- `export SENSU_RABBITMQ_HOST=""`
+- `export SENSU_REDIS_HOST=""`
 
 # Install sensu_server, graphite and grafana
 ```

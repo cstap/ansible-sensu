@@ -1,12 +1,12 @@
 ---
-sensu_api_host: "127.0.0.1"
-slack_webhook_url: ""
-slack_channel: ""
-handler_mail_from: ""
-handler_mail_to: ""
+sensu_api_host: "{{ lookup('env', 'SENSU_API_HOST') }}"
+slack_webhook_url: "{{ lookup('env', 'SENSU_SLACK_WEBHOOK_URL') }}"
+slack_channel: "{{ lookup('env', 'SENSU_SLACK_CHANNEL') }}"
+handler_mail_from: "{{ lookup('env', 'SENSU_HANDLER_MAIL_FROM') }}"
+handler_mail_to: "{{ lookup('env', 'SENSU_HANDLER_MAIL_TO') }}"
 contacts_infra_email_to:
-  - ""
-  - ""
+  - "{{ lookup('env', 'SENSU_INFRA_EMAIL_TO') }}"
+  - "{{ lookup('env', 'SENSU_INFRA_EMAIL_TO2') }}"
 sensu_remote_plugins:
   - graphite
   - process-checks
