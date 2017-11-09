@@ -15,5 +15,6 @@ sensu_remote_plugins:
   - memory-checks
   - network-checks
   - load-checks
+  - nginx
   - mailer
   - slack

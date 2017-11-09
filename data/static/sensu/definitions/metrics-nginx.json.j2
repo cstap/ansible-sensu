@@ -1,0 +1,11 @@
+{
+    "checks": {
+        "metrics-nginx": {
+            "type": "metric",
+            "command": "metrics-nginx.rb -h localhost -p 80 -q nginx_status",
+            "interval": 60,
+            "subscribers": ["nginx"],
+            "handlers": ["graphite"]
+        }
+    }
+}

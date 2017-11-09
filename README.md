@@ -25,6 +25,9 @@ cmacrae.sensu.com
 
 [zones]
 client.domain.com
+
+[nginx]
+web.domain.com
 ```
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
@@ -57,6 +60,11 @@ ansible-playbook -v -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 # Install sensu_client
 ```
 ansible-playbook -v -i hosts zones.yml --private-key="~/.ssh/priv-key.pem"
+```
+
+# Install by service
+```
+ansible-playbook -v -i hosts nginx.yml --private-key="~/.ssh/priv-key.pem"
 ```
 
 # Browse
