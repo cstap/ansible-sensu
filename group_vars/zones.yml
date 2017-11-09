@@ -6,3 +6,4 @@ sensu_remote_plugins:
   - network-checks
   - load-checks
   - nginx
+  - postfix

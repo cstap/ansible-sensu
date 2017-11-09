@@ -28,6 +28,9 @@ client.domain.com
 
 [nginx]
 web.domain.com
+
+[postfix]
+mail.domain.com
 ```
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
@@ -65,6 +68,7 @@ ansible-playbook -v -i hosts zones.yml --private-key="~/.ssh/priv-key.pem"
 # Install by service
 ```
 ansible-playbook -v -i hosts nginx.yml --private-key="~/.ssh/priv-key.pem"
+ansible-playbook -v -i hosts postfix.yml --private-key="~/.ssh/priv-key.pem"
 ```
 
 # Browse
