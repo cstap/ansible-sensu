@@ -31,6 +31,9 @@ web.domain.com
 
 [postfix]
 mail.domain.com
+
+[mysql]
+db.domain.com
 ```
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
@@ -51,6 +54,50 @@ You may need to set these environment variables.
 - `export SENSU_RABBITMQ_HOST=""`
 - `export SENSU_REDIS_HOST=""`
 
+## Create custom client hosts
+
+When you want to use different parameters by hosts, create custom client.
+
+`data/static/sensu/custom_client/host-name.client.json.j2`
+
+Example
+
+```
+{
+    "client": {
+        "name": "{{ sensu_client_name }}",
+        "address": "{{ ansible_default_ipv4['address'] }}",
+        "subscriptions": {{ sensu_client_subscriptions | to_nice_json }},
+        "mysql": {
+            "hostname": "localhost",
+            "username": "root",
+            "password": "password",
+            "database": "dbname",
+            "socket": "/var/lib/mysql/mysql.sock"
+        }
+    }
+}
+```
+
+And you also have to write down the file path.
+
+`host_vars/host-name.com.yml`
+
+```
+sensu_client_config: data/static/sensu/custom_client/host-name.client.json.j2
+```
+
+How to use custom client `key-value` definitions.
+
+```
+:::mysql.hostname:::
+:::mysql.username:::
+
+...
+
+```
+
+
 # Install sensu_server, graphite and grafana
 ```
 ansible-playbook -v -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
@@ -63,12 +110,6 @@ ansible-playbook -v -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 # Install sensu_client
 ```
 ansible-playbook -v -i hosts zones.yml --private-key="~/.ssh/priv-key.pem"
-```
-
-# Install by service
-```
-ansible-playbook -v -i hosts nginx.yml --private-key="~/.ssh/priv-key.pem"
-ansible-playbook -v -i hosts postfix.yml --private-key="~/.ssh/priv-key.pem"
 ```
 
 # Browse

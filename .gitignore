@@ -1,2 +1,4 @@
 hosts
 data/store
+data/static/sensu/custom_client/*.client.json.j2
+host_vars/*.yml

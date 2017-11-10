@@ -7,3 +7,4 @@ sensu_remote_plugins:
   - load-checks
   - nginx
   - postfix
+  - mysql

@@ -1,5 +1,0 @@
-- hosts: postfix
-  remote_user: ec2-user
-  become: yes
-  roles:
-    - cmacrae.sensu

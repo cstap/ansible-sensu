@@ -1,0 +1,11 @@
+{
+    "checks": {
+        "metrics-mysql-graphite": {
+            "type": "metric",
+            "command": "metrics-mysql-graphite.rb -h localhost --socket=/var/lib/mysql/mysql.sock",
+            "interval": 60,
+            "subscribers": ["mysql"],
+            "handlers": ["graphite"]
+        }
+    }
+}
