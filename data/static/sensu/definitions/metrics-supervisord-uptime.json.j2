@@ -1,0 +1,11 @@
+{
+    "checks": {
+        "metrics-supervisord-uptime": {
+            "type": "metric",
+            "command": "metrics-process-uptime.rb -p supervisord",
+            "interval": 60,
+            "subscribers": ["supervisord"],
+            "handlers": ["graphite"]
+        }
+    }
+}

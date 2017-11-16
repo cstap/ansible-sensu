@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-supervisord-running": {
+            "command": "check-process.rb -p supervisord",
+            "interval": 60,
+            "refresh": 10,
+            "subscribers": ["supervisord"],
+            "handlers": ["mailer", "slack"],
+            "contact": "infra"
+        }
+    }
+}
