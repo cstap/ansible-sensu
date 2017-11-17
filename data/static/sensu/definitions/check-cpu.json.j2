@@ -3,6 +3,7 @@
         "check-cpu": {
             "command": "check-cpu.rb -w 80 -c 90",
             "interval": 60,
+            "occurrences": 5,
             "refresh": 10,
             "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer", "slack"],

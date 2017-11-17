@@ -1,8 +1,9 @@
 {
     "checks": {
         "check-memory": {
-            "command": "check-memory-percent.rb -w 70 -c 80",
+            "command": "check-memory-percent.rb -w 80 -c 90",
             "interval": 60,
+            "occurrences": 5,
             "refresh": 10,
             "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer", "slack"],
