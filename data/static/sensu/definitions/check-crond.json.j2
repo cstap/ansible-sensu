@@ -1,0 +1,12 @@
+{
+    "checks": {
+        "check-crond-running": {
+            "command": "check-process.rb -p crond",
+            "interval": 60,
+            "refresh": 10,
+            "subscribers": ["sensu_masters", "zones"],
+            "handlers": ["mailer", "slack"],
+            "contact": "infra"
+        }
+    }
+}
