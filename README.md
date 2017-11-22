@@ -8,6 +8,9 @@ Install `cmacrae.sensu` from ansible-galaxy if needed.
 $ ansible-galaxy install cmacrae.sensu
 ```
 
+Added `ssh_config` file and edit it as you like.
+You should make the file when you want to use bastin server.
+
 # Edit config
 
 Make `hosts` file and Edit it.
@@ -34,6 +37,9 @@ mail.domain.com
 
 [mysql]
 db.domain.com
+
+[supervisord]
+supervisord.domain.com
 ```
 
 @see `site.yml` , `zones.yml` and check `ssh login-user`
