@@ -43,7 +43,7 @@
   with_items:
     - { key: "enabled", value: "true" }
     - { key: "host", value: "localhost:25" }
-    - { key: "from_address", value: "admin@grafana.localhost" }
+    - { key: "from_address", value: "admin@sensu.cstap.com" }
     - { key: "from_name", value: "grafana" }
   notify: restart grafana-server
   tags: grafana
