@@ -105,6 +105,22 @@ How to use custom client `key-value` definitions.
 
 
 # Install sensu_server, graphite and grafana
+
+## set grafana from domain
+
+Modify the file if you want to change from domain.
+
+```
+roles/grafana/tasks/main.yml
+
+    45      - { key: "host", value: "localhost:25" }
+    46      - { key: "from_address", value: "admin@grafana.localhost" }
+    47      - { key: "from_name", value: "grafana" }
+
+```
+
+Run
+
 ```
 ansible-playbook -v -i hosts site.yml --private-key="~/.ssh/priv-key.pem"
 ```
