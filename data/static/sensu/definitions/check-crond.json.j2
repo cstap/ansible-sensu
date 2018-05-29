@@ -3,7 +3,7 @@
         "check-crond-running": {
             "command": "check-process.rb -p crond",
             "interval": 60,
-            "refresh": 10,
+            "refresh": 1800,
             "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer", "slack"],
             "contact": "infra"

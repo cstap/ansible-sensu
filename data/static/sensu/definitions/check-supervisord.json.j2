@@ -3,7 +3,7 @@
         "check-supervisord-running": {
             "command": "check-process.rb -p supervisord",
             "interval": 60,
-            "refresh": 10,
+            "refresh": 1800,
             "subscribers": ["supervisord"],
             "handlers": ["mailer", "slack"],
             "contact": "infra"

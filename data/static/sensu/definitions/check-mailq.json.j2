@@ -3,7 +3,7 @@
         "check-mailq": {
             "command": "check-mailq.rb -w 40 -c 50",
             "interval": 60,
-            "refresh": 10,
+            "refresh": 1800,
             "subscribers": ["postfix"],
             "handlers": ["mailer", "slack"],
             "contact": "infra"

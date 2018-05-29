@@ -3,7 +3,7 @@
         "check-mysql-alive": {
             "command": "check-mysql-alive.rb -h :::mysql.hostname::: --socket :::mysql.socket::: -d :::mysql.database::: -u :::mysql.username::: -p :::mysql.password:::",
             "interval": 60,
-            "refresh": 10,
+            "refresh": 1800,
             "subscribers": ["mysql"],
             "handlers": ["mailer", "slack"],
             "contact": "infra"

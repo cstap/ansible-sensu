@@ -3,7 +3,7 @@
         "check-disk-usage": {
             "command": "check-disk-usage.rb -w 80 -c 90",
             "interval": 60,
-            "refresh": 10,
+            "refresh": 1800,
             "subscribers": ["sensu_masters", "zones"],
             "handlers": ["mailer", "slack"],
             "contact": "infra"
