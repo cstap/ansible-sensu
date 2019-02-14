@@ -203,3 +203,22 @@ index 80e8892..57d5f7c 100644
          chdir: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool"
          creates: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool/server"
 ```
+
+# Trouble Shooting
+
+Plugins Not Found Error
+
+```
+{"timestamp":"2019-02-14T10:08:17.474295+0900","level":"info","message":"publishing check result","payload":{"client":"prod-bbm","check":{"command":"check-disk-usage.rb -w 80 -c 90","refresh":1800,"handlers":["mailer","slack"],"contact":"infra","name":"check-disk-usage","issued":1550106497,"executed":1550106497,"duration":0.002,"output":"sh: check-disk-usage.rb: コマンドが見つかりません\n","status":127}}}
+```
+
+Check plugins PATH is corrrect and then restart sensu-client
+
+```
+# Check PATH
+$ echo $PATH
+/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/opt/aws/bin:/root/bin:/opt/sensu/embedded/bin
+
+# Restart
+$ /opt/sensu/embedded/bin/ruby /opt/sensu/bin/sensu-client -b -c /etc/sensu/config.json -d /etc/sensu/conf.d -e /etc/sensu/extensions -p /var/run/sensu/sensu-client.pid -l /var/log/sensu/sensu-client.log -L info
+```
