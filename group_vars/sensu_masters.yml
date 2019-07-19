@@ -20,3 +20,4 @@ sensu_remote_plugins:
   - mysql
   - mailer
   - slack
+  - http

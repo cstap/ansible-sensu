@@ -8,3 +8,4 @@ sensu_remote_plugins:
   - nginx
   - postfix
   - mysql
+  - http
