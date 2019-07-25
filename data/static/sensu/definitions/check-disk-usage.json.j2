@@ -1,7 +1,7 @@
 {
     "checks": {
         "check-disk-usage": {
-            "command": "check-disk-usage.rb -w 80 -c 90",
+            "command": "check-disk-usage.rb -w 80 -c 90 -W 90 -K 95",
             "interval": 60,
             "refresh": 1800,
             "subscribers": ["sensu_masters", "zones"],
