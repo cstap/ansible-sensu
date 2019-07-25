@@ -1,0 +1,11 @@
+{
+    "checks": {
+        "metrics-curl": {
+            "type": "metric",
+            "command": "metrics-curl.rb --url :::curl.url:::",
+            "interval": 60,
+            "subscribers": ["sensu_masters", "zones"],
+            "handlers": ["graphite"]
+        }
+    }
+}
