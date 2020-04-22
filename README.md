@@ -80,6 +80,9 @@ Example
             "password": "password",
             "database": "dbname",
             "socket": "/var/lib/mysql/mysql.sock"
+        },
+        "curl": {
+            "url": "https://example.com"
         }
     }
 }
