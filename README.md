@@ -204,6 +204,22 @@ index 80e8892..57d5f7c 100644
          creates: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool/server"
 ```
 
+Fix to work in ansible 2.7
+
+```
+--- a/tasks/plugins.yml
++++ b/tasks/plugins.yml
+@@ -23,7 +23,7 @@
+     shell: sensu-install -p {{ item }}
+     with_items: "{{ sensu_remote_plugins }}"
+     changed_when: false
+-    when: sensu_remote_plugins > 0
++    when: sensu_remote_plugins | length > 0
+
+   - name: Register available checks
+     local_action: command ls {{ static_data_store }}/sensu/checks
+```
+
 # Trouble Shooting
 
 Plugins Not Found Error
